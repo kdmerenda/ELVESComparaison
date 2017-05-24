@@ -10,7 +10,10 @@
 #include <fwk/VModule.h>
 #include <boost/utility.hpp>
 #include "TH1D.h"
+#include "TH1F.h"
+#include "TH2F.h"
 #include "TFile.h"
+#include "fdet/Telescope.h"
 /*
  * Avoid using using namespace declarations in your headers,
  * doing so makes all symbols from each namespace visible
@@ -28,15 +31,25 @@ namespace ComparaisonStudyNS {
     VModule::ResultFlag Init();
     VModule::ResultFlag Run(evt::Event& e);
     VModule::ResultFlag Finish();
+    VModule::ResultFlag GlueTrace( int,TH1F*, int, int);
   private:
     // Declare down here your data following this conventions:
     // fFieldName  : members.
     // fgFieldName : static data members.
     const static int fNPixels = 440;
     const static int fNTels = 6;
-    TH1D* fhRawPixelData[fNTels][fNPixels];
+    const static int fNRows = 22;
+    const static int fNColumns = 20;
+    TH1F* fhRawPixel[2][fNTels][fNPixels];//added a dimension for sim vs data
+    TH2F* hPixelRow[2][fNRows];
     std::vector<std::string> eventChecker;
-    int fEventCounter=0;
+    int fEventCounter;
+    int iTag;
+    double baseline=0.;
+    double baselinetail=0.;
+    double baselineRMS=0.;
+    double charge;
+    //    const fdet::Telescope& detTelGlobal;    
     TFile* outputPlots;
     bool fData;
     // Declare down here your private functions like this:

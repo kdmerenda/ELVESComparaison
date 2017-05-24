@@ -1,3 +1,4 @@
+AugerOfflineUser.o: AugerOfflineUser.cc
 ComparaisonStudy.o: ComparaisonStudy.cc ComparaisonStudy.h \
  /home/kswiss/Workspace/offline/install/include/fwk/VModule.h \
  /home/kswiss/Workspace/offline/install/include/utl/ObjectRegistrar.h \
@@ -440,6 +441,11 @@ ComparaisonStudy.o: ComparaisonStudy.cc ComparaisonStudy.h \
  /home/kswiss/Workspace/offline/ape/External/root/5.34.00-14d831f5b4/include/root/TVectorFfwd.h \
  /home/kswiss/Workspace/offline/ape/External/root/5.34.00-14d831f5b4/include/root/TVectorDfwd.h \
  /home/kswiss/Workspace/offline/ape/External/root/5.34.00-14d831f5b4/include/root/TFitResultPtr.h \
+ /home/kswiss/Workspace/offline/ape/External/root/5.34.00-14d831f5b4/include/root/TH1F.h \
+ /home/kswiss/Workspace/offline/ape/External/root/5.34.00-14d831f5b4/include/root/TH2F.h \
+ /home/kswiss/Workspace/offline/ape/External/root/5.34.00-14d831f5b4/include/root/TH2.h \
+ /home/kswiss/Workspace/offline/ape/External/root/5.34.00-14d831f5b4/include/root/TMatrixFBasefwd.h \
+ /home/kswiss/Workspace/offline/ape/External/root/5.34.00-14d831f5b4/include/root/TMatrixDBasefwd.h \
  /home/kswiss/Workspace/offline/ape/External/root/5.34.00-14d831f5b4/include/root/TFile.h \
  /home/kswiss/Workspace/offline/ape/External/root/5.34.00-14d831f5b4/include/root/TDirectoryFile.h \
  /home/kswiss/Workspace/offline/ape/External/root/5.34.00-14d831f5b4/include/root/TDirectory.h \
@@ -452,73 +458,13 @@ ComparaisonStudy.o: ComparaisonStudy.cc ComparaisonStudy.h \
  /home/kswiss/Workspace/offline/ape/External/root/5.34.00-14d831f5b4/include/root/TMap.h \
  /home/kswiss/Workspace/offline/ape/External/root/5.34.00-14d831f5b4/include/root/THashTable.h \
  /home/kswiss/Workspace/offline/ape/External/root/5.34.00-14d831f5b4/include/root/TUrl.h \
- /home/kswiss/Workspace/offline/install/include/evt/Event.h \
- /home/kswiss/Workspace/offline/install/include/evt/Header.h \
+ /home/kswiss/Workspace/offline/install/include/fdet/Telescope.h \
+ /home/kswiss/Workspace/offline/install/include/det/ValidityStamp.h \
+ /home/kswiss/Workspace/offline/install/include/utl/TimeRange.h \
  /home/kswiss/Workspace/offline/install/include/utl/TimeStamp.h \
  /home/kswiss/Workspace/offline/install/include/utl/TimeInterval.h \
- /home/kswiss/Workspace/offline/install/include/utl/LameShadowPtr.h \
- /home/kswiss/Workspace/offline/install/include/utl/ShadowPtrPolicy.h \
- /home/kswiss/Workspace/offline/install/include/utl/AugerException.h \
- /home/kswiss/Workspace/offline/install/include/utl/LameShadowPtr_fwd.h \
- /home/kswiss/Workspace/offline/install/include/utl/config.h \
- /home/kswiss/Workspace/offline/install/include/fevt/FEvent.h \
- /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/iterator/indirect_iterator.hpp \
- /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/pointee.hpp \
- /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/detail/is_incrementable.hpp \
- /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/type_traits/detail/bool_trait_undef.hpp \
- /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/indirect_reference.hpp \
- /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/iterator/filter_iterator.hpp \
- /home/kswiss/Workspace/offline/install/include/fevt/Header.h \
- /home/kswiss/Workspace/offline/install/include/fevt/FdComponentSelector.h \
- /home/kswiss/Workspace/offline/install/include/fevt/Eye.h \
- /home/kswiss/Workspace/offline/install/include/fevt/FdConstants.h \
- /home/kswiss/Workspace/offline/install/include/utl/ShadowPtr.h \
- /home/kswiss/Workspace/offline/install/include/utl/ShadowPtr_fwd.h \
- /home/kswiss/Workspace/offline/install/include/fevt/TelescopeSimData.h \
- /home/kswiss/Workspace/offline/install/include/utl/MultiTrace.h \
- /home/kswiss/Workspace/offline/install/include/utl/MultiObject.h \
- /home/kswiss/Workspace/offline/install/include/utl/Trace.h \
- /home/kswiss/Workspace/offline/install/include/utl/Deprecator.h \
- /home/kswiss/Workspace/offline/install/include/utl/Singleton.h \
- /home/kswiss/Workspace/offline/install/include/utl/ErrorLogger.h \
- /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/format.hpp \
- /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/format/detail/compat_workarounds.hpp \
- /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/format/detail/config_macros.hpp \
- /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/format/detail/workarounds_gcc-2_95.hpp \
- /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/format/detail/workarounds_stlport.hpp \
- /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/format/format_fwd.hpp \
- /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/format/internals_fwd.hpp \
- /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/format/internals.hpp \
- /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/optional.hpp \
- /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/optional/optional.hpp \
- /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/core/explicit_operator_bool.hpp \
- /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/core/swap.hpp \
- /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/optional/bad_optional_access.hpp \
- /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/type.hpp \
- /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/type_traits/has_nothrow_constructor.hpp \
- /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/type_traits/type_with_alignment.hpp \
- /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/type_traits/decay.hpp \
- /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/type_traits/remove_bounds.hpp \
- /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/type_traits/remove_extent.hpp \
- /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/type_traits/is_nothrow_move_assignable.hpp \
- /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/type_traits/has_trivial_move_assign.hpp \
- /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/type_traits/is_assignable.hpp \
- /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/type_traits/has_nothrow_assign.hpp \
- /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/type_traits/is_nothrow_move_constructible.hpp \
- /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/move/utility.hpp \
- /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/move/traits.hpp \
- /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/move/detail/type_traits.hpp \
- /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/none.hpp \
- /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/none_t.hpp \
- /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/utility/compare_pointees.hpp \
- /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/optional/optional_fwd.hpp \
- /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/optional/detail/optional_config.hpp \
- /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/optional/detail/optional_factory_support.hpp \
- /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/optional/detail/optional_aligned_storage.hpp \
- /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/optional/detail/optional_reference_spec.hpp \
- /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/optional/detail/optional_relops.hpp \
- /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/optional/detail/optional_swap.hpp \
- /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/format/alt_sstream.hpp \
+ /home/kswiss/Workspace/offline/install/include/utl/CoordinateSystem.h \
+ /home/kswiss/Workspace/offline/install/include/utl/CoordinateSystemPtr.h \
  /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/shared_ptr.hpp \
  /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/smart_ptr/shared_ptr.hpp \
  /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/smart_ptr/detail/shared_count.hpp \
@@ -661,6 +607,120 @@ ComparaisonStudy.o: ComparaisonStudy.cc ComparaisonStudy.h \
  /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/predef/hardware/simd/ppc/versions.h \
  /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/predef/version.h \
  /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/smart_ptr/detail/operator_bool.hpp \
+ /home/kswiss/Workspace/offline/install/include/utl/TransformationMatrix.h \
+ /home/kswiss/Workspace/offline/ape/External/clhep/2.3.1.1/include/CLHEP/Geometry/Transform3D.h \
+ /home/kswiss/Workspace/offline/ape/External/clhep/2.3.1.1/include/CLHEP/Geometry/defs.h \
+ /home/kswiss/Workspace/offline/ape/External/clhep/2.3.1.1/include/CLHEP/Vector/ThreeVector.h \
+ /home/kswiss/Workspace/offline/ape/External/clhep/2.3.1.1/include/CLHEP/Vector/defs.h \
+ /home/kswiss/Workspace/offline/ape/External/clhep/2.3.1.1/include/CLHEP/Vector/ThreeVector.icc \
+ /home/kswiss/Workspace/offline/ape/External/clhep/2.3.1.1/include/CLHEP/Geometry/Transform3D.icc \
+ /home/kswiss/Workspace/offline/ape/External/clhep/2.3.1.1/include/CLHEP/Vector/Rotation.h \
+ /home/kswiss/Workspace/offline/ape/External/clhep/2.3.1.1/include/CLHEP/Vector/RotationInterfaces.h \
+ /home/kswiss/Workspace/offline/ape/External/clhep/2.3.1.1/include/CLHEP/Vector/LorentzVector.h \
+ /home/kswiss/Workspace/offline/ape/External/clhep/2.3.1.1/include/CLHEP/Vector/LorentzVector.icc \
+ /home/kswiss/Workspace/offline/ape/External/clhep/2.3.1.1/include/CLHEP/Vector/ZMxpv.h \
+ /home/kswiss/Workspace/offline/ape/External/clhep/2.3.1.1/include/CLHEP/Vector/AxisAngle.h \
+ /home/kswiss/Workspace/offline/ape/External/clhep/2.3.1.1/include/CLHEP/Vector/AxisAngle.icc \
+ /home/kswiss/Workspace/offline/ape/External/clhep/2.3.1.1/include/CLHEP/Vector/RotationInterfaces.icc \
+ /home/kswiss/Workspace/offline/ape/External/clhep/2.3.1.1/include/CLHEP/Vector/RotationX.h \
+ /home/kswiss/Workspace/offline/ape/External/clhep/2.3.1.1/include/CLHEP/Vector/RotationX.icc \
+ /home/kswiss/Workspace/offline/ape/External/clhep/2.3.1.1/include/CLHEP/Units/PhysicalConstants.h \
+ /home/kswiss/Workspace/offline/ape/External/clhep/2.3.1.1/include/CLHEP/Units/defs.h \
+ /home/kswiss/Workspace/offline/ape/External/clhep/2.3.1.1/include/CLHEP/Units/SystemOfUnits.h \
+ /home/kswiss/Workspace/offline/ape/External/clhep/2.3.1.1/include/CLHEP/Vector/RotationY.h \
+ /home/kswiss/Workspace/offline/ape/External/clhep/2.3.1.1/include/CLHEP/Vector/RotationY.icc \
+ /home/kswiss/Workspace/offline/ape/External/clhep/2.3.1.1/include/CLHEP/Vector/RotationZ.h \
+ /home/kswiss/Workspace/offline/ape/External/clhep/2.3.1.1/include/CLHEP/Vector/RotationZ.icc \
+ /home/kswiss/Workspace/offline/ape/External/clhep/2.3.1.1/include/CLHEP/Vector/Rotation.icc \
+ /home/kswiss/Workspace/offline/ape/External/clhep/2.3.1.1/include/CLHEP/Geometry/Point3D.h \
+ /home/kswiss/Workspace/offline/ape/External/clhep/2.3.1.1/include/CLHEP/Geometry/BasicVector3D.h \
+ /home/kswiss/Workspace/offline/ape/External/clhep/2.3.1.1/include/CLHEP/Geometry/Vector3D.h \
+ /home/kswiss/Workspace/offline/ape/External/clhep/2.3.1.1/include/CLHEP/Geometry/Normal3D.h \
+ /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/operators.hpp \
+ /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/tuple/tuple.hpp \
+ /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/tuple/detail/tuple_basic.hpp \
+ /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/type_traits/cv_traits.hpp \
+ /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/type_traits/add_cv.hpp \
+ /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/type_traits/remove_volatile.hpp \
+ /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/utility/swap.hpp \
+ /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/core/swap.hpp \
+ /home/kswiss/Workspace/offline/install/include/utl/unconfig.h \
+ /home/kswiss/Workspace/offline/install/include/utl/config.h \
+ /home/kswiss/Workspace/offline/install/include/utl/TransformerConstructor.h \
+ /home/kswiss/Workspace/offline/install/include/utl/Transformation-fwd.h \
+ /home/kswiss/Workspace/offline/install/include/utl/TransformerConstructor-fwd.h \
+ /home/kswiss/Workspace/offline/install/include/utl/GeometryException.h \
+ /home/kswiss/Workspace/offline/install/include/utl/AugerException.h \
+ /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/enable_shared_from_this.hpp \
+ /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/smart_ptr/enable_shared_from_this.hpp \
+ /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/smart_ptr/weak_ptr.hpp \
+ /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/weak_ptr.hpp \
+ /home/kswiss/Workspace/offline/install/include/utl/TabulatedFunction.h \
+ /home/kswiss/Workspace/offline/install/include/utl/TabulatedFunctionIterators.h \
+ /home/kswiss/Workspace/offline/install/include/utl/Pair.h \
+ /home/kswiss/Workspace/offline/install/include/utl/PairErr.h \
+ /home/kswiss/Workspace/offline/install/include/evt/Event.h \
+ /home/kswiss/Workspace/offline/install/include/evt/Header.h \
+ /home/kswiss/Workspace/offline/install/include/utl/LameShadowPtr.h \
+ /home/kswiss/Workspace/offline/install/include/utl/ShadowPtrPolicy.h \
+ /home/kswiss/Workspace/offline/install/include/utl/LameShadowPtr_fwd.h \
+ /home/kswiss/Workspace/offline/install/include/fevt/FEvent.h \
+ /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/iterator/indirect_iterator.hpp \
+ /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/pointee.hpp \
+ /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/detail/is_incrementable.hpp \
+ /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/type_traits/detail/bool_trait_undef.hpp \
+ /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/indirect_reference.hpp \
+ /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/iterator/filter_iterator.hpp \
+ /home/kswiss/Workspace/offline/install/include/fevt/Header.h \
+ /home/kswiss/Workspace/offline/install/include/fevt/FdComponentSelector.h \
+ /home/kswiss/Workspace/offline/install/include/fevt/Eye.h \
+ /home/kswiss/Workspace/offline/install/include/fevt/FdConstants.h \
+ /home/kswiss/Workspace/offline/install/include/utl/ShadowPtr.h \
+ /home/kswiss/Workspace/offline/install/include/utl/ShadowPtr_fwd.h \
+ /home/kswiss/Workspace/offline/install/include/fevt/TelescopeSimData.h \
+ /home/kswiss/Workspace/offline/install/include/utl/MultiTrace.h \
+ /home/kswiss/Workspace/offline/install/include/utl/MultiObject.h \
+ /home/kswiss/Workspace/offline/install/include/utl/Trace.h \
+ /home/kswiss/Workspace/offline/install/include/utl/Deprecator.h \
+ /home/kswiss/Workspace/offline/install/include/utl/Singleton.h \
+ /home/kswiss/Workspace/offline/install/include/utl/ErrorLogger.h \
+ /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/format.hpp \
+ /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/format/detail/compat_workarounds.hpp \
+ /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/format/detail/config_macros.hpp \
+ /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/format/detail/workarounds_gcc-2_95.hpp \
+ /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/format/detail/workarounds_stlport.hpp \
+ /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/format/format_fwd.hpp \
+ /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/format/internals_fwd.hpp \
+ /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/format/internals.hpp \
+ /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/optional.hpp \
+ /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/optional/optional.hpp \
+ /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/core/explicit_operator_bool.hpp \
+ /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/optional/bad_optional_access.hpp \
+ /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/type.hpp \
+ /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/type_traits/has_nothrow_constructor.hpp \
+ /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/type_traits/type_with_alignment.hpp \
+ /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/type_traits/decay.hpp \
+ /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/type_traits/remove_bounds.hpp \
+ /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/type_traits/remove_extent.hpp \
+ /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/type_traits/is_nothrow_move_assignable.hpp \
+ /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/type_traits/has_trivial_move_assign.hpp \
+ /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/type_traits/is_assignable.hpp \
+ /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/type_traits/has_nothrow_assign.hpp \
+ /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/type_traits/is_nothrow_move_constructible.hpp \
+ /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/move/utility.hpp \
+ /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/move/traits.hpp \
+ /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/move/detail/type_traits.hpp \
+ /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/none.hpp \
+ /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/none_t.hpp \
+ /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/utility/compare_pointees.hpp \
+ /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/optional/optional_fwd.hpp \
+ /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/optional/detail/optional_config.hpp \
+ /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/optional/detail/optional_factory_support.hpp \
+ /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/optional/detail/optional_aligned_storage.hpp \
+ /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/optional/detail/optional_reference_spec.hpp \
+ /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/optional/detail/optional_relops.hpp \
+ /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/optional/detail/optional_swap.hpp \
+ /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/format/alt_sstream.hpp \
  /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/format/alt_sstream_impl.hpp \
  /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/format/format_class.hpp \
  /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/format/exceptions.hpp \
@@ -676,12 +736,6 @@ ComparaisonStudy.o: ComparaisonStudy.cc ComparaisonStudy.h \
  /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/lambda/lambda.hpp \
  /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/lambda/core.hpp \
  /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/type_traits/transform_traits.hpp \
- /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/type_traits/cv_traits.hpp \
- /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/type_traits/add_cv.hpp \
- /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/type_traits/remove_volatile.hpp \
- /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/tuple/tuple.hpp \
- /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/tuple/detail/tuple_basic.hpp \
- /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/utility/swap.hpp \
  /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/lambda/detail/lambda_config.hpp \
  /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/lambda/detail/lambda_fwd.hpp \
  /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/lambda/detail/arity_code.hpp \
@@ -719,47 +773,6 @@ ComparaisonStudy.o: ComparaisonStudy.cc ComparaisonStudy.h \
  /home/kswiss/Workspace/offline/install/include/utl/Photon.h \
  /home/kswiss/Workspace/offline/install/include/utl/Point.h \
  /home/kswiss/Workspace/offline/install/include/utl/BasicVector.h \
- /home/kswiss/Workspace/offline/ape/External/clhep/2.3.1.1/include/CLHEP/Geometry/Normal3D.h \
- /home/kswiss/Workspace/offline/ape/External/clhep/2.3.1.1/include/CLHEP/Geometry/defs.h \
- /home/kswiss/Workspace/offline/ape/External/clhep/2.3.1.1/include/CLHEP/Vector/ThreeVector.h \
- /home/kswiss/Workspace/offline/ape/External/clhep/2.3.1.1/include/CLHEP/Vector/defs.h \
- /home/kswiss/Workspace/offline/ape/External/clhep/2.3.1.1/include/CLHEP/Vector/ThreeVector.icc \
- /home/kswiss/Workspace/offline/ape/External/clhep/2.3.1.1/include/CLHEP/Geometry/BasicVector3D.h \
- /home/kswiss/Workspace/offline/ape/External/clhep/2.3.1.1/include/CLHEP/Geometry/Point3D.h \
- /home/kswiss/Workspace/offline/ape/External/clhep/2.3.1.1/include/CLHEP/Geometry/Vector3D.h \
- /home/kswiss/Workspace/offline/install/include/utl/CoordinateSystem.h \
- /home/kswiss/Workspace/offline/install/include/utl/CoordinateSystemPtr.h \
- /home/kswiss/Workspace/offline/install/include/utl/TransformationMatrix.h \
- /home/kswiss/Workspace/offline/ape/External/clhep/2.3.1.1/include/CLHEP/Geometry/Transform3D.h \
- /home/kswiss/Workspace/offline/ape/External/clhep/2.3.1.1/include/CLHEP/Geometry/Transform3D.icc \
- /home/kswiss/Workspace/offline/ape/External/clhep/2.3.1.1/include/CLHEP/Vector/Rotation.h \
- /home/kswiss/Workspace/offline/ape/External/clhep/2.3.1.1/include/CLHEP/Vector/RotationInterfaces.h \
- /home/kswiss/Workspace/offline/ape/External/clhep/2.3.1.1/include/CLHEP/Vector/LorentzVector.h \
- /home/kswiss/Workspace/offline/ape/External/clhep/2.3.1.1/include/CLHEP/Vector/LorentzVector.icc \
- /home/kswiss/Workspace/offline/ape/External/clhep/2.3.1.1/include/CLHEP/Vector/ZMxpv.h \
- /home/kswiss/Workspace/offline/ape/External/clhep/2.3.1.1/include/CLHEP/Vector/AxisAngle.h \
- /home/kswiss/Workspace/offline/ape/External/clhep/2.3.1.1/include/CLHEP/Vector/AxisAngle.icc \
- /home/kswiss/Workspace/offline/ape/External/clhep/2.3.1.1/include/CLHEP/Vector/RotationInterfaces.icc \
- /home/kswiss/Workspace/offline/ape/External/clhep/2.3.1.1/include/CLHEP/Vector/RotationX.h \
- /home/kswiss/Workspace/offline/ape/External/clhep/2.3.1.1/include/CLHEP/Vector/RotationX.icc \
- /home/kswiss/Workspace/offline/ape/External/clhep/2.3.1.1/include/CLHEP/Units/PhysicalConstants.h \
- /home/kswiss/Workspace/offline/ape/External/clhep/2.3.1.1/include/CLHEP/Units/defs.h \
- /home/kswiss/Workspace/offline/ape/External/clhep/2.3.1.1/include/CLHEP/Units/SystemOfUnits.h \
- /home/kswiss/Workspace/offline/ape/External/clhep/2.3.1.1/include/CLHEP/Vector/RotationY.h \
- /home/kswiss/Workspace/offline/ape/External/clhep/2.3.1.1/include/CLHEP/Vector/RotationY.icc \
- /home/kswiss/Workspace/offline/ape/External/clhep/2.3.1.1/include/CLHEP/Vector/RotationZ.h \
- /home/kswiss/Workspace/offline/ape/External/clhep/2.3.1.1/include/CLHEP/Vector/RotationZ.icc \
- /home/kswiss/Workspace/offline/ape/External/clhep/2.3.1.1/include/CLHEP/Vector/Rotation.icc \
- /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/operators.hpp \
- /home/kswiss/Workspace/offline/install/include/utl/unconfig.h \
- /home/kswiss/Workspace/offline/install/include/utl/TransformerConstructor.h \
- /home/kswiss/Workspace/offline/install/include/utl/Transformation-fwd.h \
- /home/kswiss/Workspace/offline/install/include/utl/TransformerConstructor-fwd.h \
- /home/kswiss/Workspace/offline/install/include/utl/GeometryException.h \
- /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/enable_shared_from_this.hpp \
- /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/smart_ptr/enable_shared_from_this.hpp \
- /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/smart_ptr/weak_ptr.hpp \
- /home/kswiss/Workspace/offline/ape/External/boost/1_62_0/include/boost/weak_ptr.hpp \
  /home/kswiss/Workspace/offline/install/include/utl/ConsecutiveEnumFactory.h \
  /home/kswiss/Workspace/offline/install/include/utl/ThrowPolicy.h \
  /home/kswiss/Workspace/offline/install/include/utl/Vector.h \
@@ -771,10 +784,6 @@ ComparaisonStudy.o: ComparaisonStudy.cc ComparaisonStudy.h \
  /home/kswiss/Workspace/offline/install/include/utl/OperationsAV.h \
  /home/kswiss/Workspace/offline/install/include/utl/MultiTabulatedFunctionErrors.h \
  /home/kswiss/Workspace/offline/install/include/utl/TabulatedFunctionErrors.h \
- /home/kswiss/Workspace/offline/install/include/utl/Pair.h \
- /home/kswiss/Workspace/offline/install/include/utl/TabulatedFunction.h \
- /home/kswiss/Workspace/offline/install/include/utl/TabulatedFunctionIterators.h \
- /home/kswiss/Workspace/offline/install/include/utl/PairErr.h \
  /home/kswiss/Workspace/offline/install/include/fevt/TelescopeTriggerData.h \
  /home/kswiss/Workspace/offline/install/include/fevt/SLTData.h \
  /home/kswiss/Workspace/offline/install/include/fdet/Camera.h \
@@ -1156,10 +1165,7 @@ ComparaisonStudy.o: ComparaisonStudy.cc ComparaisonStudy.h \
  /home/kswiss/Workspace/offline/install/include/rdet/RManagerRegister.h \
  /home/kswiss/Workspace/offline/install/include/fdet/FDetector.h \
  /home/kswiss/Workspace/offline/install/include/fdet/FDetComponentSelector.h \
- /home/kswiss/Workspace/offline/install/include/det/ValidityStamp.h \
- /home/kswiss/Workspace/offline/install/include/utl/TimeRange.h \
  /home/kswiss/Workspace/offline/install/include/fdet/Eye.h \
- /home/kswiss/Workspace/offline/install/include/fdet/Telescope.h \
  /home/kswiss/Workspace/offline/install/include/fdet/Pixel.h \
  /home/kswiss/Workspace/offline/install/include/fdet/Mirror.h \
  /home/kswiss/Workspace/offline/install/include/fdet/Filter.h \
@@ -1202,6 +1208,8 @@ ComparaisonStudy.o: ComparaisonStudy.cc ComparaisonStudy.h \
  /home/kswiss/Workspace/offline/install/include/utl/Kolmogorov.h \
  /home/kswiss/Workspace/offline/install/include/utl/NormalDistribution.h \
  /home/kswiss/Workspace/offline/install/include/utl/PhysicalConstants.h \
+ /home/kswiss/Workspace/offline/install/include/utl/UTCDateTime.h \
+ /home/kswiss/Workspace/offline/install/include/utl/UTCDate.h \
  /home/kswiss/Workspace/offline/ape/External/clhep/2.3.1.1/include/CLHEP/Random/Randomize.h \
  /home/kswiss/Workspace/offline/ape/External/clhep/2.3.1.1/include/CLHEP/Random/DRand48Engine.h \
  /home/kswiss/Workspace/offline/ape/External/clhep/2.3.1.1/include/CLHEP/Utility/noncopyable.h \
@@ -1274,6 +1282,11 @@ ComparaisonStudy.o: ComparaisonStudy.cc ComparaisonStudy.h \
  /home/kswiss/Workspace/offline/ape/External/root/5.34.00-14d831f5b4/include/root/RConfigure.h \
  /home/kswiss/Workspace/offline/ape/External/root/5.34.00-14d831f5b4/include/root/TVirtualTreePlayer.h \
  /home/kswiss/Workspace/offline/ape/External/root/5.34.00-14d831f5b4/include/root/TGraph.h \
+ /home/kswiss/Workspace/offline/ape/External/root/5.34.00-14d831f5b4/include/root/TMultiGraph.h \
+ /home/kswiss/Workspace/offline/ape/External/root/5.34.00-14d831f5b4/include/root/TF1.h \
+ /home/kswiss/Workspace/offline/ape/External/root/5.34.00-14d831f5b4/include/root/TFormula.h \
+ /home/kswiss/Workspace/offline/ape/External/root/5.34.00-14d831f5b4/include/root/TBits.h \
+ /home/kswiss/Workspace/offline/ape/External/root/5.34.00-14d831f5b4/include/root/Math/ParamFunctor.h \
  /home/kswiss/Workspace/offline/ape/External/root/5.34.00-14d831f5b4/include/root/TCanvas.h \
  /home/kswiss/Workspace/offline/ape/External/root/5.34.00-14d831f5b4/include/root/TPad.h \
  /home/kswiss/Workspace/offline/ape/External/root/5.34.00-14d831f5b4/include/root/TVirtualPad.h \
@@ -1289,9 +1302,6 @@ ComparaisonStudy.o: ComparaisonStudy.cc ComparaisonStudy.h \
  /home/kswiss/Workspace/offline/ape/External/root/5.34.00-14d831f5b4/include/root/TCanvasImp.h \
  /home/kswiss/Workspace/offline/ape/External/root/5.34.00-14d831f5b4/include/root/TCutG.h \
  /home/kswiss/Workspace/offline/ape/External/root/5.34.00-14d831f5b4/include/root/TH2D.h \
- /home/kswiss/Workspace/offline/ape/External/root/5.34.00-14d831f5b4/include/root/TH2.h \
- /home/kswiss/Workspace/offline/ape/External/root/5.34.00-14d831f5b4/include/root/TMatrixFBasefwd.h \
- /home/kswiss/Workspace/offline/ape/External/root/5.34.00-14d831f5b4/include/root/TMatrixDBasefwd.h \
  /home/kswiss/Workspace/offline/ape/External/root/5.34.00-14d831f5b4/include/root/THStack.h \
  /home/kswiss/Workspace/offline/ape/External/root/5.34.00-14d831f5b4/include/root/TLegend.h \
  /home/kswiss/Workspace/offline/ape/External/root/5.34.00-14d831f5b4/include/root/TPave.h \
@@ -1299,6 +1309,7 @@ ComparaisonStudy.o: ComparaisonStudy.cc ComparaisonStudy.h \
  /home/kswiss/Workspace/offline/ape/External/root/5.34.00-14d831f5b4/include/root/TStyle.h \
  /home/kswiss/Workspace/offline/ape/External/root/5.34.00-14d831f5b4/include/root/TLatex.h \
  /home/kswiss/Workspace/offline/ape/External/root/5.34.00-14d831f5b4/include/root/TText.h \
+ /home/kswiss/Workspace/offline/ape/External/root/5.34.00-14d831f5b4/include/root/TF1.h \
  /home/kswiss/Workspace/offline/ape/External/root/5.34.00-14d831f5b4/include/root/TVector3.h \
  /home/kswiss/Workspace/offline/ape/External/root/5.34.00-14d831f5b4/include/root/TError.h \
  /home/kswiss/Workspace/offline/ape/External/root/5.34.00-14d831f5b4/include/root/TVector2.h \
@@ -1346,5 +1357,7 @@ ComparaisonStudy.o: ComparaisonStudy.cc ComparaisonStudy.h \
  /home/kswiss/Workspace/offline/ape/fdeventlib/4.1.9/include/FdGeometry.hh \
  /home/kswiss/Workspace/offline/ape/fdeventlib/4.1.9/include/EyePixelList.hh \
  /home/kswiss/Workspace/offline/ape/fdeventlib/4.1.9/include/EyePixelData.hh \
- /home/kswiss/Workspace/offline/ape/fdeventlib/4.1.9/include/EyeT3Data.hh
-AugerOfflineUser.o: AugerOfflineUser.cc
+ /home/kswiss/Workspace/offline/ape/fdeventlib/4.1.9/include/EyeT3Data.hh \
+ /home/kswiss/Workspace/offline/ape/External/root/5.34.00-14d831f5b4/include/root/TPaletteAxis.h \
+ /home/kswiss/Workspace/offline/ape/External/root/5.34.00-14d831f5b4/include/root/TGaxis.h \
+ /home/kswiss/Workspace/offline/ape/External/root/5.34.00-14d831f5b4/include/root/TLine.h
