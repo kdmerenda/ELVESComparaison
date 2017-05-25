@@ -40,10 +40,13 @@ namespace ComparaisonStudyNS {
     const static int fNTels = 6;
     const static int fNRows = 22;
     const static int fNColumns = 20;
-    TH1F* fhRawPixel[2][fNTels][fNPixels];//added a dimension for sim vs data
-    TH2F* hPixelRow[2][fNRows];
+    const static int fNumFiles = 21;
+    TH1F* fhRawPixel[fNumFiles][fNTels][fNPixels];//added a dimension for sim vs data
+    TH2F* hPixelRow[fNumFiles][fNRows];
     std::vector<std::string> eventChecker;
     int fEventCounter;
+    int fDataEventCounter;
+    int fSimEventCounter;
     int iTag;
     double baseline=0.;
     double baselinetail=0.;

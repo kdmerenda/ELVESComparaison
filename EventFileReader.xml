@@ -18,7 +18,17 @@
   <FDAS>
 
     <InputFilenames> 
-      <!--/home/kswiss/Workspace/workoffline/FORK_ELVESSimulation/saved/170517/noatm/FdSimOut.eye1.root-->
+      /home/kswiss/Workspace/workoffline/CompStudy/saved/170524/FdSimOut.I0_8e04.eye1.root
+      /home/kswiss/Workspace/workoffline/CompStudy/saved/170524/FdSimOut.I0_8.2e04.eye1.root
+      /home/kswiss/Workspace/workoffline/CompStudy/saved/170524/FdSimOut.I0_8.4e04.eye1.root
+      /home/kswiss/Workspace/workoffline/CompStudy/saved/170524/FdSimOut.I0_8.6e04.eye1.root
+      /home/kswiss/Workspace/workoffline/CompStudy/saved/170524/FdSimOut.I0_8.8e04.eye1.root
+      /home/kswiss/Workspace/workoffline/CompStudy/saved/170524/FdSimOut.I0_9e04.eye1.root
+      /home/kswiss/Workspace/workoffline/CompStudy/saved/170524/FdSimOut.I0_9.2e04.eye1.root
+      /home/kswiss/Workspace/workoffline/CompStudy/saved/170524/FdSimOut.I0_9.4e04.eye1.root
+      /home/kswiss/Workspace/workoffline/CompStudy/saved/170524/FdSimOut.I0_9.6e04.eye1.root
+      /home/kswiss/Workspace/workoffline/CompStudy/saved/170524/FdSimOut.I0_9.8e04.eye1.root
+      /home/kswiss/Workspace/workoffline/CompStudy/saved/170524/FdSimOut.I0_1e05.eye1.root
       /home/kswiss/Workspace/workoffline/CompStudy/saved/170524/FdSimOut.I0_1.02e05.eye1.root
       /home/kswiss/Workspace/workoffline/CompStudy/saved/170524/FdSimOut.I0_1.04e05.eye1.root
       /home/kswiss/Workspace/workoffline/CompStudy/saved/170524/FdSimOut.I0_1.06e05.eye1.root
@@ -28,7 +38,7 @@
       /home/kswiss/Workspace/workoffline/CompStudy/saved/170524/FdSimOut.I0_1.14e05.eye1.root
       /home/kswiss/Workspace/workoffline/CompStudy/saved/170524/FdSimOut.I0_1.16e05.eye1.root
       /home/kswiss/Workspace/workoffline/CompStudy/saved/170524/FdSimOut.I0_1.18e05.eye1.root
-      <!--/home/kswiss/Workspace/workoffline/FORK_ELVESSimulation/saved/170523/FdSimOut.eye1.root-->
+
       /media/kswiss/ExtraDrive1/ELVESRawData/elves_e1_005254_2014-09-30.01-38.root
     </InputFilenames>
 

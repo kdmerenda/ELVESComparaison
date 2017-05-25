@@ -97,15 +97,23 @@ ComparaisonStudy::Init()
   INFO("Init()");
   //here we want to start by comparing only the first page of the traces. later we will do a full comparaison when the simulation will be doing followers properly.   
   fEventCounter = 0;
-  
+  fDataEventCounter = 0;
+  fSimEventCounter = 0;
   outputPlots = new TFile("FullTraces.root","recreate");
 
   for(int i = 0; i < fNRows; i++){  
-    TString hPixelRowNameSim("hPixelRowSim");hPixelRowNameSim+= (i+1);
-    TString hPixelRowNameDat("hPixelRowDat");hPixelRowNameDat+= (i+1);
+    //same title for both data and simulation
     TString hPixelRowTitle("Row ");hPixelRowTitle+= (i+1);hPixelRowTitle+= ";Time Bin (100 ns);Column Number;ADC Counts / 20 Time Bins";
-    hPixelRow[0][i] = new TH2F(hPixelRowNameSim,hPixelRowTitle,50,0,999,fNColumns,0,fNColumns);
-    hPixelRow[1][i] = new TH2F(hPixelRowNameDat,hPixelRowTitle,50,0,999,fNColumns,0,fNColumns);
+    
+    //initialize data first
+    TString hPixelRowNameDat("hDataPixelRow");hPixelRowNameDat+= (i+1);
+    hPixelRow[0][i] = new TH2F(hPixelRowNameDat,hPixelRowTitle,50,0,999,fNColumns,0,fNColumns);
+    //intialize simulation
+    for(int j=1; j < fNumFiles; j++){
+      TString hPixelRowNameSim("hSimPixelRow");hPixelRowNameSim+= (i+1);
+      hPixelRowNameSim+="_";hPixelRowNameSim+=j;
+      hPixelRow[j][i] = new TH2F(hPixelRowNameSim,hPixelRowTitle,50,0,999,fNColumns,0,fNColumns);
+    }
   }
 
   const TimeStamp times = UTCDateTime(2017,05,19,0,0).GetTimeStamp();
@@ -117,13 +125,16 @@ ComparaisonStudy::Init()
   for(int i = 0; i < fNTels; i++){
     for(int j = 0; j < fNPixels; j++){
 
-      //intialize storing for sim
-      TString hnameSim("hSim_tel");hnameSim+=i+1;hnameSim+="_r";hnameSim+=detTelGlobal.GetPixel(j+1).GetRow();hnameSim+="_c";hnameSim+=detTelGlobal.GetPixel(j+1).GetColumn();
-      fhRawPixel[0][i][j] = new TH1F(hnameSim,hnameSim,50,0,999);
       //and now for data
       TString hnameDat("hDat_tel");hnameDat+=i+1;hnameDat+="_r";hnameDat+=detTelGlobal.GetPixel(j+1).GetRow();hnameDat+="_c";hnameDat+=detTelGlobal.GetPixel(j+1).GetColumn();
-      fhRawPixel[1][i][j] = new TH1F(hnameDat,hnameDat,50,0,999);
+      fhRawPixel[0][i][j] = new TH1F(hnameDat,hnameDat,50,0,999);
 
+      //intialize storing for sim
+      for(int k=1; k < fNumFiles; k++){      
+	TString hnameSim("hSim");hnameSim+=k;hnameSim+="_tel";
+	hnameSim+=i+1;hnameSim+="_r";hnameSim+=detTelGlobal.GetPixel(j+1).GetRow();hnameSim+="_c";hnameSim+=detTelGlobal.GetPixel(j+1).GetColumn();
+	fhRawPixel[k][i][j] = new TH1F(hnameSim,hnameSim,50,0,999);
+      }
 
     }
   }
@@ -136,19 +147,21 @@ ComparaisonStudy::Run(evt::Event& event)
   const evt::Header& header = event.GetHeader();  
   
   AugerEvent& rawEvent = event.GetRawEvent();
-  fEventCounter++;
 
+  fEventCounter++;
   //to deal with sim and data in input file
-  if(fEventCounter == 1) {
-    fData = false;
-    iTag = 0;
-    INFO("New SIM Event!");
-  }else{
+  if(!(header.GetId() == "eye1_run1_event1")) {
     fData = true;
-    iTag = 1;
     if (!(header.GetId() == "eye1_run5254_event6336")) return eSuccess;
-    INFO("New DATA Event!");
+    fDataEventCounter++;
+    INFO("New Data Event!");
+  }else{
+    fData = false;
+    INFO("New SIM Event!");
+    fSimEventCounter++;
   }
+  cout << fDataEventCounter << " " << fSimEventCounter << endl;
+  //  if(fDataEventCounter > 1 || fSimEventCounter > 1) return eSuccess;
   
   for (AugerEvent::EyeIterator eyeIter = rawEvent.EyesBegin();
        eyeIter != rawEvent.EyesEnd(); ++eyeIter) {
@@ -218,10 +231,16 @@ ComparaisonStudy::Run(evt::Event& event)
 
 
       TString hName("h");
-      if(fData) hName+="Data";
-      if(!fData) hName+="Sim";
+      if(fData) {
+	hName+="Data";
+	hName+=fDataEventCounter;
+      }
+      if(!fData){
+	hName+="Sim";
+	hName+=fSimEventCounter;
+      }
       hName+="_m";hName+=mirrorId;hName+="_r";hName+=detTel.GetPixel(pixelId).GetRow();hName+="_c";hName+=detTel.GetPixel(pixelId).GetColumn();
-      cout << hName.Data() << endl;
+      //      cout << hName.Data() << endl;
       TH1F* trace = new TH1F(hName,hName,50,startBin,endBin);
       
       for (unsigned int pos = startBin; pos <= endBin; ++pos) {
@@ -231,20 +250,25 @@ ComparaisonStudy::Run(evt::Event& event)
 	  
       }//trace loop
 
-      cout << iTag << " " << trace << " " << mirrorId << " " << pixelId << endl;
+      //      cout << iTag << " " << trace << " " << mirrorId << " " << pixelId << endl;
+
+      //this itag below is needed as we are trying to select one event in a long list of data event and we are setting it as the first element in the array of histograms.
+      //it turns out fSimCounter is alread at least 1 when we are here...
+      if(fData)iTag = 0;
+      if(!fData)iTag = fSimEventCounter;
       GlueTrace(iTag,trace, mirrorId, pixelId);//here glue means save in memory. 
+
     }//pixel loop
     fTMP->Write();
     fTMP->Close();
 
-    //    return eSuccess;
-      
-    }//mirror loop
+    }//mirror or eye loop?
+
+  //everything below needs to happen only once fhRawPixel is fully filled!
+  if(!(fDataEventCounter+fSimEventCounter == fNumFiles))return eSuccess;
 
 
-  //need to fillall arrays before moving on 
-  if(fEventCounter == 1) return eSuccess;
-
+  //here I am looking  at creating the 2d histos for each rows of each files
   const TimeStamp times = UTCDateTime(2017,05,19,0,0).GetTimeStamp();
   Detector::GetInstance().Update(times);
   const fdet::FDetector& detFD = det::Detector::GetInstance().GetFDetector();
@@ -252,10 +276,11 @@ ComparaisonStudy::Run(evt::Event& event)
   const fdet::Telescope& detTelGlobal = detEye.GetTelescope(4);
 
   
-  for(int k = 0; k < 2; k++){
-    for(int i = 0; i < fNTels; i++){
-      for(int j = 0; j < fNPixels; j++){
-	if(fhRawPixel[k][i][j]->GetEntries() == 0){
+  for(int i = 0; i < fNTels; i++){
+    for(int j = 0; j < fNPixels; j++){
+      for(int k = 0; k < fNumFiles; k++){
+	//know we can treat the full array the same way (data and sim)
+     	if(fhRawPixel[k][i][j]->GetEntries() == 0){
 	  delete fhRawPixel[k][i][j];
 	  continue;
 	}
@@ -265,85 +290,140 @@ ComparaisonStudy::Run(evt::Event& event)
       }
     } 
   }  
+  
 
-  TH2F *hResidual[fNRows];
+  //here I make plot with superimposed traces for data and simulaton.
+  double I0[20] = {8e04,8.2e04,8.4e04,8.6e04,8.8e04,9e04,9.2e04,9.4e04,9.6e04,9.8e04,1e05,1.02e05,1.04e05,1.06e05,1.08e05,1.1e05,1.12e05,1.14e05,1.16e05,1.18e05};
+  Color_t colorList[11] = {kPink,kRed,kOrange,kSpring+8,kTeal+8,kTeal,kCyan,kAzure-4,kBlue,kViolet+10,kBlack};
+
+  TCanvas *cstack = new TCanvas("cstack","cstack",1000,800);
+  gStyle->SetOptStat(0);
+  TF1* fits[fNumFiles][5];//this will save the fits done below, readjust
+  for(int k = 1; k < fNumFiles; k++){
+    TString  hCanvasName("Peak Current = ");hCanvasName+=I0[k-1];
+    hCanvasName+="A;Time Bins (100ns);ADC Counts";
+    TH1F hCanvas("hCanvas",hCanvasName,50,0,999);
+    hCanvas.GetYaxis()->SetRangeUser(0,1300);
+    hCanvas.GetYaxis()->SetTitleOffset(1.4);
+    hCanvas.Draw();
+    TLegend lcstack(.15,.60,.35,.85);
+    TLegend lcstack2(.15,.45,.35,.55);
+    lcstack.SetTextSize(0.03);
+    lcstack.SetTextFont(52);
+    lcstack2.SetTextSize(0.03);
+    lcstack2.SetTextFont(62);
+    lcstack.SetBorderSize(0);
+    lcstack2.SetBorderSize(0);
+    int traceCounter = 0;
+    for(int j = 6; j <= 10; j++){
+      TString htmpName("htmp");htmpName+=k;htmpName+=j;
+      TH1F *htmp= new TH1F(htmpName,"htmp",50,0,999);
+      for(int iBinx = 1; iBinx <= hPixelRow[k][j]->GetNbinsX(); iBinx++){
+	htmp->SetBinContent(int(iBinx),hPixelRow[k][j]->GetBinContent(iBinx,10));
+      }
+      TF1* g1 = new TF1(htmpName+="fit","gaus",200,1000);
+      htmp->Fit(g1,"RNQ");
+      g1->SetLineColor(colorList[int(2*(j-6))]);
+      g1->SetLineWidth(3);
+      g1->SetLineStyle(9);
+      g1->Draw("same");
+      TString htmpDatName("htmpDat");htmpDatName+=k;htmpDatName+=j;
+      TH1F *htmpDat= new TH1F(htmpDatName,"htmpDat",50,0,999);
+      for(int iBinx = 1; iBinx <= hPixelRow[0][j]->GetNbinsX(); iBinx++){
+	htmpDat->SetBinContent(int(iBinx),hPixelRow[0][j]->GetBinContent(iBinx,10));
+      }
+      TF1* g2 = new TF1(htmpDatName+="fit","gaus",200,1000);
+      htmpDat->Fit(g2,"RNQ");
+      g2->SetLineColor(colorList[int(2*(j-6))]);
+      g2->SetLineWidth(3);
+      g2->Draw("same");
+      TString lcstackName("Row ");lcstackName+=j+1;
+      lcstack.AddEntry(g2,lcstackName,"l");
+
+      if(traceCounter ==0){
+	TF1* g1tmp = (TF1*)g1->Clone();
+	TF1* g2tmp = (TF1*)g2->Clone();
+	g1tmp->SetLineColor(kBlack);
+	lcstack2.AddEntry(g1tmp,"Simulation","l");
+	g2tmp->SetLineColor(kBlack);
+	lcstack2.AddEntry(g2tmp,"Data","l");
+      }
+      traceCounter ++;
+    }
+
+    TString cstackName("traces_");cstackName+=I0[k-1];cstackName+=".png";
+    lcstack.Draw();
+    lcstack2.Draw();
+    cstack->Update();
+    cstack->SaveAs(cstackName.Data());  
+  }
+
+  //below one is studying the residuals of the 2 d histogram and for pixels. 
+  TH2F *hResidual[fNumFiles][fNRows];  
   for(int iRow = 0; iRow < fNRows; iRow++){
-    TString hResidualName("hResidual");hResidualName+=iRow+1;
-    TString hResidualTitle("Residual for Row ");hResidualTitle+=iRow+1;
-    //get the data histogram
-
-    hResidual[iRow] = (TH2F*) hPixelRow[1][iRow]->Clone();
-    hResidual[iRow]->SetNameTitle(hResidualName, hResidualTitle);
-    hResidual[iRow]->Add(hPixelRow[0][iRow],-1.);
+    for(int k = 0; k < fNumFiles; k++){
+      TString hResidualName("hResidual");hResidualName+=k;hResidualName+="_";hResidualName+=iRow+1;
+      TString hResidualTitle("Residual for Row ");hResidualTitle+=iRow+1;
+      //get the data histogram
+      
+      hResidual[k][iRow] = (TH2F*) hPixelRow[0][iRow]->Clone();
+      hResidual[k][iRow]->SetNameTitle(hResidualName, hResidualTitle);
+      hResidual[k][iRow]->Add(hPixelRow[k][iRow],-1.);
+    }
   }
 
   //plotting the residual for all selected rows in 2D hist form
+  cout << "PLOTTING THE RESIDUALS..." << endl;
   TCanvas* cglues = new TCanvas("cglues","cglues",1000,800);
-  gStyle->SetOptStat(0);
-  for(int i=4; i <= 14; i++){
-    hResidual[i]->Draw("colz");
-    hResidual[i]->GetZaxis()->SetTitleOffset(1.02); 
-    hResidual[i]->GetZaxis()->SetTitle("Residual ADC/2#mus"); 
-    cglues->Update();
-    TPaletteAxis *palette =(TPaletteAxis*)hResidual[i]->GetListOfFunctions()->FindObject("palette");
-    palette->SetX1NDC(0.9);
-    palette->SetX2NDC(0.92);
-    palette->SetY1NDC(0.1);
-    palette->SetY2NDC(0.9);
-    cglues->Modified();
-    
-    TString fNameGlues("glues/");fNameGlues+=hResidual[i]->GetName();
-    fNameGlues+=".png";
-    cglues->SaveAs(fNameGlues.Data());  
+  for(int i=6; i <= 10; i++){
+    for(int k = 0; k < fNumFiles; k++){
+      hResidual[k][i]->Draw("colz");
+      hResidual[k][i]->GetZaxis()->SetTitleOffset(1.02); 
+      hResidual[k][i]->GetZaxis()->SetTitle("Residual ADC/2#mus"); 
+      cglues->Update();
+      
+      TString fNameGlues("glues/");fNameGlues+=hResidual[k][i]->GetName();
+      fNameGlues+=".png";
+      //cglues->SaveAs(fNameGlues.Data());  
+    }
   }
 
-  Color_t colorList[11] = {kPink,kRed,kOrange,kSpring+8,kTeal+8,kTeal,kCyan,kAzure-4,kBlue,kViolet+10,kBlack};
+  
   TCanvas* cresidual = new TCanvas("cresidual","cresidual",1000,800);
   TMultiGraph *mg = new TMultiGraph();
-  //TH2F * hResidualCanvas = new TH2F("hResidualCanvas",";Event Number;Residual",100,0,12,100,-500,500);
-  // hResidualCanvas->Draw();
+  TLegend* lc = new TLegend(.15,.15,.25,.45);
+  
   for(int i=6; i <= 10; i++){  //look through rows 6-10
-    double residualTotal;
-    TGraph* gResidual = new TGraph(1);
-    for(int iBinx=1;iBinx<=hResidual[i]->GetNbinsX(); iBinx++){
-      residualTotal += hResidual[i]->GetBinContent(iBinx, 10);//look at column 10
-    }
-    residualTotal = residualTotal/hResidual[i]->GetNbinsX();
-    cout << fEventCounter << " " << residualTotal << endl;
-    //fEventCounter wont work. Need to think on how to implement multiple sim filesx
-    gResidual->SetPoint(0,1,residualTotal);
+    TGraph* gResidual = new TGraph(9);
     gResidual->SetMarkerStyle(21);
     gResidual->SetMarkerColor(colorList[i-5]);
     gResidual->SetMarkerSize(2.0);
-    //    gResidual.Draw("P same");
+    for(int k = 1; k < fNumFiles; k++){//skip the 0 value from data/data
+      double residualTotal=0;
+      for(int iBinx=1;iBinx<=hResidual[k][i]->GetNbinsX(); iBinx++){
+	residualTotal += hResidual[k][i]->GetBinContent(iBinx, 10);//look at c10
+      }
+      residualTotal = residualTotal/hResidual[k][i]->GetNbinsX();   
+      //  cout << I0[k-1] << " " << residualTotal << endl;
+      gResidual->SetPoint(k-1,I0[k-1],residualTotal);
+    }
+    
+    TString lcName("Row");lcName+=i+1;
     mg->Add(gResidual);
-      //    cresidual->Update();
+    lc->AddEntry(gResidual,lcName,"p");
+    
   }
+  mg->SetTitle("Residual Average Per Pixel: Column 10; Peak Current (A); Data-Simulation Residual");
   mg->Draw("AP");
+  mg->GetYaxis()->SetTitleOffset(1.3);
+  lc->Draw("same");
+  cresidual->Update();
   cresidual->SaveAs("gResidual.png");
-  //   hPixelRow[0][i-1]->Draw("colz");
-  //   hPixelRow[0][i-1]->GetZaxis()->SetTitleOffset(0.98);
-  //   cglues->Update();
-  //   TPaletteAxis *palette =
-  //     (TPaletteAxis*)hPixelRow[0][i-1]->GetListOfFunctions()->FindObject("palette");
-  //   palette->SetX1NDC(0.9);
-  //   palette->SetX2NDC(0.92);
-  //   palette->SetY1NDC(0.1);
-  //   palette->SetY2NDC(0.9);
-  //   // palette->SetX1NDC(0.1);
-  //   // palette->SetX2NDC(0.12);
-  //   // palette->SetY1NDC(0.1);
-  //   // palette->SetY2NDC(0.5);
-  //   cglues->Modified();
-  //   TString fNameGlues("glues/");fNameGlues+=hPixelRow[0][i-1]->GetName();fNameGlues+=".png";
-  //   cglues->SaveAs(fNameGlues.Data());
-  // }
-
+  
+  
   
   outputPlots->Write();
   outputPlots->Close();
-
-  
   return eSuccess;
 }
 
@@ -357,7 +437,7 @@ ComparaisonStudy::Finish()
 VModule::ResultFlag
 ComparaisonStudy::GlueTrace(int iTagtmp, TH1F* theTrace, int telIdtmp, int pixelIdtmp) 
 {
-  cout << theTrace->GetNbinsX() << " " << fhRawPixel[iTagtmp][telIdtmp-1][pixelIdtmp-1]->GetNbinsX() <<endl;
+  // cout << theTrace->GetNbinsX() << " " << fhRawPixel[iTagtmp][telIdtmp-1][pixelIdtmp-1]->GetNbinsX() <<endl;
   for(int iBin = 1; iBin <= theTrace->GetNbinsX(); iBin++){
     double normalizedBinContent = theTrace->GetBinContent(iBin);
     fhRawPixel[iTagtmp][telIdtmp-1][pixelIdtmp-1]->SetBinContent(iBin,normalizedBinContent);
