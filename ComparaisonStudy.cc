@@ -46,6 +46,7 @@
 #include <TMap.h>
 #include <TTree.h>
 #include <TGraph.h>
+#include <TGraphErrors.h>
 #include <TMultiGraph.h>
 #include <TCanvas.h>
 #include <TCutG.h>
@@ -107,12 +108,12 @@ ComparaisonStudy::Init()
     
     //initialize data first
     TString hPixelRowNameDat("hDataPixelRow");hPixelRowNameDat+= (i+1);
-    hPixelRow[0][i] = new TH2F(hPixelRowNameDat,hPixelRowTitle,50,0,999,fNColumns,0,fNColumns);
+    hPixelRow[0][i] = new TH2F(hPixelRowNameDat,hPixelRowTitle,1000,0,999,fNColumns,0,fNColumns);
     //intialize simulation
     for(int j=1; j < fNumFiles; j++){
       TString hPixelRowNameSim("hSimPixelRow");hPixelRowNameSim+= (i+1);
       hPixelRowNameSim+="_";hPixelRowNameSim+=j;
-      hPixelRow[j][i] = new TH2F(hPixelRowNameSim,hPixelRowTitle,50,0,999,fNColumns,0,fNColumns);
+      hPixelRow[j][i] = new TH2F(hPixelRowNameSim,hPixelRowTitle,1000,0,999,fNColumns,0,fNColumns);
     }
   }
 
@@ -127,13 +128,13 @@ ComparaisonStudy::Init()
 
       //and now for data
       TString hnameDat("hDat_tel");hnameDat+=i+1;hnameDat+="_r";hnameDat+=detTelGlobal.GetPixel(j+1).GetRow();hnameDat+="_c";hnameDat+=detTelGlobal.GetPixel(j+1).GetColumn();
-      fhRawPixel[0][i][j] = new TH1F(hnameDat,hnameDat,50,0,999);
+      fhRawPixel[0][i][j] = new TH1F(hnameDat,hnameDat,1000,0,999);
 
       //intialize storing for sim
       for(int k=1; k < fNumFiles; k++){      
 	TString hnameSim("hSim");hnameSim+=k;hnameSim+="_tel";
 	hnameSim+=i+1;hnameSim+="_r";hnameSim+=detTelGlobal.GetPixel(j+1).GetRow();hnameSim+="_c";hnameSim+=detTelGlobal.GetPixel(j+1).GetColumn();
-	fhRawPixel[k][i][j] = new TH1F(hnameSim,hnameSim,50,0,999);
+	fhRawPixel[k][i][j] = new TH1F(hnameSim,hnameSim,1000,0,999);
       }
 
     }
@@ -241,13 +242,11 @@ ComparaisonStudy::Run(evt::Event& event)
       }
       hName+="_m";hName+=mirrorId;hName+="_r";hName+=detTel.GetPixel(pixelId).GetRow();hName+="_c";hName+=detTel.GetPixel(pixelId).GetColumn();
       //      cout << hName.Data() << endl;
-      TH1F* trace = new TH1F(hName,hName,50,startBin,endBin);
+      TH1F* trace = new TH1F(hName,hName,1000,startBin,endBin);
       
       for (unsigned int pos = startBin; pos <= endBin; ++pos) {
 	charge = FADCDataWordGetData(&fadcword[pos]);
-	//	cout << int(pos/20.) << endl;
-	trace->SetBinContent(int(pos/20.),charge-baseline);
-	  
+	trace->SetBinContent(pos,charge-baseline);	  
       }//trace loop
 
       //      cout << iTag << " " << trace << " " << mirrorId << " " << pixelId << endl;
@@ -298,11 +297,11 @@ ComparaisonStudy::Run(evt::Event& event)
 
   TCanvas *cstack = new TCanvas("cstack","cstack",1000,800);
   gStyle->SetOptStat(0);
-  TF1* fits[fNumFiles][5];//this will save the fits done below, readjust
+  TF1* fits[fNumFiles][fNRows];//this will save the fits done below, readjust
   for(int k = 1; k < fNumFiles; k++){
-    TString  hCanvasName("Peak Current = ");hCanvasName+=I0[k-1];
+    TString  hCanvasName("Column 10: Peak Current = ");hCanvasName+=I0[k-1];
     hCanvasName+="A;Time Bins (100ns);ADC Counts";
-    TH1F hCanvas("hCanvas",hCanvasName,50,0,999);
+    TH1F hCanvas("hCanvas",hCanvasName,1000,0,999);
     hCanvas.GetYaxis()->SetRangeUser(0,1300);
     hCanvas.GetYaxis()->SetTitleOffset(1.4);
     hCanvas.Draw();
@@ -317,18 +316,18 @@ ComparaisonStudy::Run(evt::Event& event)
     int traceCounter = 0;
     for(int j = 6; j <= 10; j++){
       TString htmpName("htmp");htmpName+=k;htmpName+=j;
-      TH1F *htmp= new TH1F(htmpName,"htmp",50,0,999);
+      TH1F *htmp= new TH1F(htmpName,"htmp",1000,0,999);
       for(int iBinx = 1; iBinx <= hPixelRow[k][j]->GetNbinsX(); iBinx++){
-	htmp->SetBinContent(int(iBinx),hPixelRow[k][j]->GetBinContent(iBinx,10));
+	htmp->SetBinContent(int(iBinx),hPixelRow[k][j]->GetBinContent(iBinx,10));//choosing column 10
       }
       TF1* g1 = new TF1(htmpName+="fit","gaus",200,1000);
       htmp->Fit(g1,"RNQ");
       g1->SetLineColor(colorList[int(2*(j-6))]);
       g1->SetLineWidth(3);
-      g1->SetLineStyle(9);
+      g1->SetLineStyle(2);
       g1->Draw("same");
       TString htmpDatName("htmpDat");htmpDatName+=k;htmpDatName+=j;
-      TH1F *htmpDat= new TH1F(htmpDatName,"htmpDat",50,0,999);
+      TH1F *htmpDat= new TH1F(htmpDatName,"htmpDat",1000,0,999);
       for(int iBinx = 1; iBinx <= hPixelRow[0][j]->GetNbinsX(); iBinx++){
 	htmpDat->SetBinContent(int(iBinx),hPixelRow[0][j]->GetBinContent(iBinx,10));
       }
@@ -349,6 +348,8 @@ ComparaisonStudy::Run(evt::Event& event)
 	lcstack2.AddEntry(g2tmp,"Data","l");
       }
       traceCounter ++;
+      if(traceCounter < 6) fits[0][j] = g2;//only need to save data fit for one go across pixels
+      fits[k][j] = g1; 
     }
 
     TString cstackName("traces_");cstackName+=I0[k-1];cstackName+=".png";
@@ -357,7 +358,119 @@ ComparaisonStudy::Run(evt::Event& event)
     cstack->Update();
     cstack->SaveAs(cstackName.Data());  
   }
+  
 
+  //below is the analysis on the fits done above...
+  TCanvas* cfits = new TCanvas("cfits","cfits",1000,800);
+  TMultiGraph *mgFitAmplitude = new TMultiGraph();
+  TMultiGraph *mgFitTimeDiff = new TMultiGraph();
+  TMultiGraph *mgFitChi2 = new TMultiGraph();
+  int plotCounter = 0;
+  TLegend lcamplitude(.15,.60,.35,.85);
+  TLegend lcamplitude2(.15,.45,.35,.55);
+  lcamplitude.SetTextSize(0.03);
+  lcamplitude.SetTextFont(52);
+  lcamplitude2.SetTextSize(0.03);
+  lcamplitude2.SetTextFont(62);
+  lcamplitude.SetBorderSize(0);
+  lcamplitude2.SetBorderSize(0);
+  for(int j = 6; j <= 10; j++){
+    //data
+    TGraphErrors* gFitDataAmplitude = new TGraphErrors(1);
+    double peakMaximumData = fits[0][j]->GetParameter(0);
+    double peakMeanData = fits[0][j]->GetParameter(1);
+    double peakStdDevData = fits[0][j]->GetParameter(2);
+    if (peakMaximumData > 0){
+      gFitDataAmplitude->SetPoint(1,87000,peakMaximumData);
+      gFitDataAmplitude->SetPointError(1,0,fits[0][j]->GetParError(0));
+    }
+    gFitDataAmplitude->SetMarkerColor(colorList[int(2*(j-6))]);
+    gFitDataAmplitude->SetMarkerSize(2);
+    gFitDataAmplitude->SetMarkerStyle(23);
+    mgFitAmplitude->Add(gFitDataAmplitude);
+    TString lcstackNameDat("Data Guess");
+    if(plotCounter==0){
+      TGraphErrors* gTMPAmplitude = (TGraphErrors*)gFitDataAmplitude->Clone();
+      gTMPAmplitude->SetMarkerColor(kBlack);
+      lcamplitude2.AddEntry(gTMPAmplitude,lcstackNameDat,"p");
+    }
+
+    
+    //simulation
+    TGraphErrors* gFitAmplitude = new TGraphErrors(fNumFiles-1);
+    TGraph* gFitChi2 = new TGraph(fNumFiles-1);
+    TGraphErrors* gFitTimeDiff = new TGraphErrors(fNumFiles-1);
+    for(int k = 1; k < fNumFiles; k++){
+
+      //chi2 analysis
+      double chiSquareFits = fits[k][j]->GetChisquare()/fits[k][j]->GetNDF();//get reduced chi2
+      gFitChi2->SetPoint(k-1,I0[k-1],chiSquareFits);
+
+      //amplitude and timing analysis
+      double amplitudeFits = fits[k][j]->GetParameter(0);//get amp
+      double amplitudeFitsErrors = fits[k][j]->GetParError(0);//get amp
+      double meanFits = fits[k][j]->GetParameter(1);//get mean
+      double meanFitsErrors = fits[k][j]->GetParError(1);//get mean
+      double stddevFits = fits[k][j]->GetParameter(2);//get stddev
+      double stddevFitsErrors = fits[k][j]->GetParError(2);//get stddev
+      // cout << k+1 << " " << j+1 << " " << amplitudeFits << " "  << meanFits << " " << stddevFits << endl;
+      // cout << k+1 << " " << j+1 << " " << amplitudeFitsErrors << " "  << meanFitsErrors << " " << stddevFitsErrors << endl<< endl;
+      if (amplitudeFits > 0) {
+	gFitAmplitude->SetPoint(k-1,I0[k-1],amplitudeFits);
+	gFitAmplitude->SetPointError(1,0,amplitudeFitsErrors);	
+	gFitTimeDiff->SetPoint(k-1,I0[k-1],meanFits-peakMeanData);
+	gFitTimeDiff->SetPointError(1,0,0);	
+      }
+    }
+    gFitAmplitude->SetMarkerColor(colorList[int(2*(j-6))]);
+    gFitAmplitude->SetMarkerStyle(20);
+    gFitTimeDiff->SetMarkerColor(colorList[int(2*(j-6))]);
+    gFitTimeDiff->SetMarkerStyle(20);
+    gFitChi2->SetMarkerColor(colorList[int(2*(j-6))]);
+    gFitChi2->SetMarkerStyle(20);
+    mgFitAmplitude->Add(gFitAmplitude);
+    mgFitTimeDiff->Add(gFitTimeDiff);
+    mgFitChi2->Add(gFitChi2);
+
+    //legend fill and aplicable to all three plots
+    TString lcstackName("Simulation Row ");lcstackName+=j+1;
+    lcamplitude.AddEntry(gFitAmplitude,lcstackName,"p");
+    
+    plotCounter++;
+  }
+  //save amplitude plots
+  mgFitAmplitude->SetTitle("Amplitude Variation for Column 10; Peak Current (A); Peak Maximum");
+  mgFitAmplitude->Draw("AP");
+  mgFitAmplitude->GetYaxis()->SetTitleOffset(1.3);
+  mgFitAmplitude->GetXaxis()->SetRangeUser(78000,120000);
+  lcamplitude2.Draw();
+  lcamplitude.Draw();
+  cfits->Update();
+  cfits->SaveAs("gAmplitudes.png");
+
+  //save timediff plots
+  mgFitChi2->SetTitle("Simulation Reduced #chi^{2} for Column 10; Peak Current (A); #chi^{2}");
+  mgFitChi2->Draw("AP");
+  mgFitChi2->GetYaxis()->SetTitleOffset(1.3);
+  mgFitChi2->GetXaxis()->SetRangeUser(78000,120000);
+  lcamplitude.Draw();
+  cfits->Update();
+  cfits->SaveAs("gChi2.png");
+
+  //save timediff plots
+  mgFitTimeDiff->SetTitle("Peak Time Difference w/ Data for Column 10; Peak Current (A); Time Difference (Time Bins of 100ns)");
+  mgFitTimeDiff->Draw("AP");
+  mgFitTimeDiff->GetYaxis()->SetTitleOffset(1.3);
+  mgFitTimeDiff->GetXaxis()->SetRangeUser(78000,120000);
+  lcamplitude.SetX1NDC(.55);
+  lcamplitude.SetY1NDC(.15);
+  lcamplitude.SetX2NDC(.75);
+  lcamplitude.SetY2NDC(.40);
+  lcamplitude.Draw();
+  cfits->Update();
+  cfits->SaveAs("gTimeDiff.png");
+
+  
   //below one is studying the residuals of the 2 d histogram and for pixels. 
   TH2F *hResidual[fNumFiles][fNRows];  
   for(int iRow = 0; iRow < fNRows; iRow++){
@@ -394,7 +507,7 @@ ComparaisonStudy::Run(evt::Event& event)
   TLegend* lc = new TLegend(.15,.15,.25,.45);
   
   for(int i=6; i <= 10; i++){  //look through rows 6-10
-    TGraph* gResidual = new TGraph(9);
+    TGraph* gResidual = new TGraph(fNumFiles-1);
     gResidual->SetMarkerStyle(21);
     gResidual->SetMarkerColor(colorList[i-5]);
     gResidual->SetMarkerSize(2.0);
